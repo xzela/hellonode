@@ -1,16 +1,16 @@
 var http = require("http");
-var url = require("url");
+// var url = require("url");
 
 function start(route) {
 	var onRequest = function(request, response) {
 		console.log("Request received.");
 
-		var pathname = url.parse(request.url).pathname;
+		//var pathname = url.parse(request.url).pathname;
 
-		route(pathname)
+		var junk = route(request, response)
 
 		response.writeHead(200, {"Content-Type:": "text/plain"});
-		response.write("Hello World")
+		response.write(junk)
 		response.end();
 	};
 
