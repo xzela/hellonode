@@ -1,21 +1,20 @@
-var http = require("http");
-// var url = require("url");
+var http = require('http');
+var fs = require('fs');
+var host = "127.0.0.1";
+var port = 1337;
+var server = http.createServer(function(request, response){
+	console.log("Received request: " + request.url);
+	fs.readFile('.' + request.url, function(error, data){
+		if (error) {
+			response.writeHead(404, {'Content-type': 'text/plain'});
+			response.end("Page not Found");
+		}
+		response.writeHead(200, {'Content-type': 'text/plain'});
+		response.end(data);
 
-function start(route) {
-	var onRequest = function(request, response) {
-		console.log("Request received.");
+	});
+});
 
-		//var pathname = url.parse(request.url).pathname;
-
-		var junk = route(request, response)
-
-		response.writeHead(200, {"Content-Type:": "text/plain"});
-		response.write(junk)
-		response.end();
-	};
-
-	http.createServer(onRequest).listen(8888);
-	console.log("Server started");
-}
-
-exports.start = start;
+server.listen(port, host, function() {
+	console.log("listening on: " + host + ":" + port);
+})
