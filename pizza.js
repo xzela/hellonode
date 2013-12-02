@@ -1,6 +1,6 @@
 
 function orderPizza(name, cookTime) {
-	console.log("user  is ordering a " + name + " pizza");
+	console.log("user is ordering a " + name + " pizza");
 	return { name: name, time: cookTime, cooked: false };
 }
 
@@ -9,7 +9,7 @@ function putPizzaInOven(pizza, callback) {
 		console.log("worker is placing a " + pizza.name + " pizza in the oven");
 		return callback(pizza);
 	} else {
-		console.log("no more pizzas, closing oven")
+		console.log("no more pizzas to cook, turn off oven");
 	}
 }
 
